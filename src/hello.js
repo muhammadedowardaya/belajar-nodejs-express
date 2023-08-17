@@ -1,9 +1,14 @@
 import express from "express";
-const request = require("supertest");
 const app = express();
 
 app.get("/", (req, res) => {
-	res.send("Hello World");
+	if (req.query.name) {
+		res.status(200);
+		res.end(`Hello ${req.query.name}`);
+	} else {
+		res.status(400);
+		res.end(`Gak ada apa apa didieu`);
+	}
 });
 
 app.listen(3000, () => {
